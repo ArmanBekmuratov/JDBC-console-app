@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 
-public class RepoRunner {
+public class Main {
     static SkillRepoImplementation skillRepo = SkillRepoImplementation.getInstance();
     static DeveloperRepoImplementation developerRepo = DeveloperRepoImplementation.getInstance();
     static TeamRepoImplementation teamRepo = TeamRepoImplementation.getInstance();
