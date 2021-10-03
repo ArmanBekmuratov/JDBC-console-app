@@ -58,6 +58,9 @@ public class TeamRepoImplementation implements GenericRepo<Team, Integer> {
     }
     @Override
     public Optional<Team> findById(Integer id) {
+        if (id < 1) {
+            throw new RuntimeException("ID cannot be less than 1");
+        }
         List<Team> teams = this.findAll();
         return teams.stream().filter(t -> t.getId().equals(id)).findFirst();
     }
@@ -106,7 +109,7 @@ public class TeamRepoImplementation implements GenericRepo<Team, Integer> {
 
     @Override
     @SneakyThrows
-    public boolean update(Team team) {
+    public Team update(Team team) {
         try (var updateTeamStatement = connection.prepareStatement(UPDATE_TEAM_SQL);
              var deleteDevelopersStatement = connection.prepareStatement(DELETE_DEVELOPERS_SQL);
              var saveDeveloperStatement = connection.prepareStatement(SAVE_DEVELOPERS_OF_TEAM)) {
@@ -124,12 +127,15 @@ public class TeamRepoImplementation implements GenericRepo<Team, Integer> {
                 saveDeveloperStatement.executeUpdate();
             }
         }
-        return true;
+        return team;
     }
 
     @Override
     @SneakyThrows
     public boolean deleteById(Integer id) {
+        if (id < 1) {
+            throw new RuntimeException("ID cannot be less than 1");
+        }
         try (var preparedStatement = connection.prepareStatement(DELETE_BY_ID_SQL)) {
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate() > 0;

@@ -2,54 +2,48 @@ package com.arman.crud.controller;
 
 import com.arman.crud.model.Developer;
 import com.arman.crud.model.Skill;
-import com.arman.crud.service.implementation.DeveloperServiceImpl;
-import com.arman.crud.service.implementation.SkillServiceImpl;
-
+import com.arman.crud.sercive.DeveloperService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class DeveloperController {
-    private static final DeveloperServiceImpl developerService = DeveloperServiceImpl.getInstance();
     private static final DeveloperController INSTANCE = new DeveloperController();
+    private static final DeveloperService developerService = DeveloperService.getInstance();
+
+    public Developer save(String firstName, String lastName, String[] skills) {
+        return developerService.save(new Developer(null, firstName, lastName, countSkillIds(skills)));
+    }
+
+    public Developer update(Integer id, String firstName, String lastName, String[] skills) {
+        return developerService.update(new Developer(id, firstName, lastName, countSkillIds(skills)));
+    }
+
+    public Optional<Developer> findById(Integer id) {
+        return developerService.findById(id);
+    }
 
     public List<Developer> findAll() {
         return developerService.findAll();
     }
 
-    public boolean deleteById(String id) {
-        return developerService.deleteById(stringToInt(id));
+    public boolean deleteById(Integer id) {
+        return developerService.deleteById(id);
     }
 
-    public Developer findById(String id) {
-        return developerService.findById(stringToInt(id));
-    }
+    private DeveloperController() {
 
-    public Developer save( String firstName, String lastName, String[] skills) {
-        return developerService.save(new Developer(null, firstName, lastName, countSkill(skills)));
-    }
-
-    public boolean update(String id, String firstName, String lastName, String[] skills) {
-        return developerService.update(new Developer(stringToInt(id), firstName, lastName, countSkill(skills)));
-    }
-
-
-    private Integer stringToInt(String string) {
-        return Integer.parseInt(string);
-    }
-
-
-    private List<Skill> countSkill(String[] skills) {
-        List<Skill> skillList = new ArrayList<>();
-        for (String skill : skills) {
-            skillList.add(new Skill(stringToInt(skill), null));
-        }
-        return skillList;
     }
 
     public static DeveloperController getInstance() {
         return INSTANCE;
     }
 
-    private DeveloperController() {
+    private List<Skill> countSkillIds(String[] skills) {
+        List<Skill> skillList = new ArrayList<>();
+        for (String skill : skills) {
+            skillList.add(new Skill(Integer.parseInt(skill), null));
+        }
+        return skillList;
     }
 }

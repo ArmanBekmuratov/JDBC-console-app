@@ -1,6 +1,8 @@
+
 package com.arman.crud.view;
 
 import com.arman.crud.controller.TeamController;
+import com.arman.crud.model.Team;
 
 import java.util.Scanner;
 
@@ -25,9 +27,9 @@ public class TeamView extends BaseView{
     void save() {
         System.out.println(LINE);
         System.out.println("Enter team's name");
-        var name = sc.nextLine();
+        var name = sc.next();
         System.out.println("Enter developer's ID separated by \"SPACE\"");
-        var developer = sc.nextLine();
+        var developer = sc.next();
         var idDevelopers = developer.split(" ");
         var team = teamController.save( name, idDevelopers);
         System.out.println(team.toString());
@@ -39,14 +41,12 @@ public class TeamView extends BaseView{
     void edit() {
         System.out.println(LINE);
         System.out.println("Enter Team's ID");
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         System.out.println("Enter developer's ID separated by \"SPACE\"");
-        var developers = sc.nextLine();
+        var developers = sc.next();
         var idDevelopers = developers.split(" ");
         var team = teamController.update(id, idDevelopers);
-        if (team) {
-            System.out.println(SUCCESS_EDIT);
-        }
+        System.out.println(team.toString());
         System.out.println(LINE);
     }
 
@@ -54,7 +54,7 @@ public class TeamView extends BaseView{
     void delete() {
         System.out.println(LINE);
         System.out.println("Enter Team's ID");
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         teamController.deleteById(id);
         System.out.println("The status is set to 'deleted'");
         System.out.println(SUCCESS_DELETE);
@@ -75,9 +75,10 @@ public class TeamView extends BaseView{
     void findById() {
         System.out.println(LINE);
         System.out.println("Enter team's ID");
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         var team = teamController.findById(id);
         System.out.println(team.toString());
         System.out.println(LINE);
     }
 }
+

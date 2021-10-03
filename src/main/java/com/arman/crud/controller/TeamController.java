@@ -3,32 +3,32 @@ package com.arman.crud.controller;
 import com.arman.crud.model.Developer;
 import com.arman.crud.model.Team;
 import com.arman.crud.model.TeamStatus;
-import com.arman.crud.service.implementation.DeveloperServiceImpl;
-import com.arman.crud.service.implementation.TeamServiceImpl;
+import com.arman.crud.sercive.DeveloperService;
+import com.arman.crud.sercive.TeamService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TeamController {
     private static final TeamController INSTANCE = new TeamController();
-    private static final TeamServiceImpl teamService = TeamServiceImpl.getInstance();
-    private static final DeveloperServiceImpl developerService = DeveloperServiceImpl.getInstance();
+    private static final TeamService teamService = TeamService.getInstance();
+    private static final DeveloperService developerService = DeveloperService.getInstance();
 
     public List<Team> findAll() {
         return teamService.findAll();
     }
 
-    public Team findById(String id) {
-        return teamService.findById(stringToInt(id));
+    public Team findById(Integer id) {
+        return teamService.findById(id).orElse(null);
     }
 
-    public boolean update(String id, String[] developers) {
-        return teamService.update(new Team(stringToInt(id), teamService.findById(stringToInt(id)).getName(), developerCount(developers),TeamStatus.active));
+    public Team update(Integer id, String[] developers) {
+        return teamService.update(new Team(id, findById(id).getName(), developerCount(developers),TeamStatus.active));
 
     }
 
-    public void deleteById(String id) {
-        teamService.deleteById(stringToInt(id));
+    public void deleteById(Integer id) {
+        teamService.deleteById(id);
     }
 
     public Team save(String name, String[] developers) {
@@ -38,14 +38,11 @@ public class TeamController {
     private List<Developer> developerCount(String[] developers) {
         List<Developer> listDeveloper = new ArrayList<>();
         for (String developer : developers) {
-            listDeveloper.add(developerService.findById(stringToInt(developer)));
+            listDeveloper.add(developerService.findById(Integer.parseInt(developer)).orElse(null));
         }
         return listDeveloper;
     }
 
-    private Integer stringToInt(String string) {
-        return Integer.parseInt(string);
-    }
 
     private TeamController() {
 

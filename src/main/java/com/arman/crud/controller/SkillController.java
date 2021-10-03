@@ -1,45 +1,40 @@
 package com.arman.crud.controller;
 
 import com.arman.crud.model.Skill;
-import com.arman.crud.service.implementation.SkillServiceImpl;
+import com.arman.crud.sercive.SkillService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class SkillController {
-    private static final SkillServiceImpl skillService = SkillServiceImpl.getInstance();
+    private static final SkillService skillService = SkillService.getInstance();
     private static final SkillController INSTANCE = new SkillController();
 
-    public List<Skill> findAll() {
-       return skillService.findAll();
-    }
+    private SkillController(){
 
-    public boolean deleteById(String id) {
-        return skillService.deleteById(stringToInt(id));
-    }
-
-    public Skill findById(String id) {
-        return skillService.findById(stringToInt(id));
-    }
-
-    public Skill save(String name) {
-        return skillService.save(new Skill(null, name));
-    }
-
-    public boolean update(String id, String name) {
-        return skillService.update(new Skill(stringToInt(id), name));
-    }
-
-
-    private Integer stringToInt(String string) {
-        return Integer.parseInt(string);
     }
 
     public static SkillController getInstance() {
         return INSTANCE;
     }
 
-    private SkillController() {
-
+    public Optional<Skill> findById(Integer id) {
+        return skillService.findById(id);
     }
 
+    public List<Skill> findAll() {
+        return skillService.findAll();
+    }
+
+    public Skill save(String name) {
+        return skillService.save(new Skill(name));
+    }
+
+    public Skill update(Integer id, String  name) {
+        return skillService.update(new Skill(id, name));
+    }
+
+    public boolean deleteById(Integer id) {
+        return skillService.deleteById(id);
+    }
 }

@@ -1,6 +1,7 @@
 package com.arman.crud.view;
 
 import com.arman.crud.controller.SkillController;
+import com.arman.crud.model.Skill;
 
 import java.util.Scanner;
 
@@ -37,13 +38,12 @@ public class SkillView extends BaseView {
     void edit() {
         System.out.println(LINE);
         var editMenuMessage = "Skill editing.\n" +
-                "Enter ID";
+                "Enter the ID and the name you want to change with a space";
         System.out.println(editMenuMessage);
-        var id = sc.nextLine();
-        System.out.println(LINE);
-        var name = sc.nextLine();
-        skillController.update(id, name);
-        System.out.println(SUCCESS_EDIT);
+        var id = sc.nextInt();
+        var name = sc.next();
+        var skill = skillController.update(id, name);
+        System.out.println(skill.toString());
         System.out.println(LINE);
     }
 
@@ -53,7 +53,7 @@ public class SkillView extends BaseView {
         var deleteMenuMessage = "Skill deleting\n" +
                 "Enter ID";
         System.out.println(deleteMenuMessage);
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         skillController.deleteById(id);
         System.out.println(SUCCESS_DELETE);
         System.out.println(LINE);
@@ -71,7 +71,7 @@ public class SkillView extends BaseView {
     void findById() {
         System.out.println(LINE);
         System.out.println("Enter skill's ID");
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         var skill = skillController.findById(id);
         System.out.println(skill.toString());
         System.out.println(LINE);

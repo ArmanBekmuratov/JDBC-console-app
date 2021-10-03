@@ -2,6 +2,8 @@ package com.arman.crud.view;
 
 import java.util.Scanner;
 
+import static com.arman.crud.view.Message.LINE;
+
 public abstract class BaseView {
     protected Scanner sc;
     protected String message;
@@ -20,9 +22,9 @@ public abstract class BaseView {
         boolean isExit = false;
         while (true) {
             print();
-            System.out.println("---------------------------");
+            System.out.println(LINE);
             System.out.println(message);
-            System.out.println("---------------------------");
+            System.out.println(LINE);
             String response = sc.next();
             switch (response) {
                 case "1" -> save();

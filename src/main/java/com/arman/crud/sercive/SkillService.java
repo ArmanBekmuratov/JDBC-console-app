@@ -1,21 +1,25 @@
-package com.arman.crud.service.implementation;
+package com.arman.crud.sercive;
 
 import com.arman.crud.model.Skill;
 import com.arman.crud.repo.implementation.SkillRepoImplementation;
-import com.arman.crud.service.GenericService;
 
 import java.util.List;
+import java.util.Optional;
 
-public class SkillServiceImpl implements GenericService<Skill, Integer> {
+public class SkillService implements GenericService<Skill>{
     private static final SkillRepoImplementation skillRepo = SkillRepoImplementation.getInstance();
-    private static final SkillServiceImpl INSTANCE = new SkillServiceImpl();
+    private static final SkillService INSTANCE = new SkillService();
 
-    private SkillServiceImpl(){
+    private SkillService() {
 
     }
-
-    public static SkillServiceImpl getInstance() {
+    public static SkillService getInstance() {
         return INSTANCE;
+    }
+
+    @Override
+    public Optional<Skill> findById(Integer id) {
+        return skillRepo.findById(id);
     }
 
     @Override
@@ -24,17 +28,12 @@ public class SkillServiceImpl implements GenericService<Skill, Integer> {
     }
 
     @Override
-    public Skill findById(Integer id) {
-        return skillRepo.findById(id).orElse(null);
-    }
-
-    @Override
     public Skill save(Skill skill) {
         return skillRepo.save(skill);
     }
 
     @Override
-    public boolean update(Skill skill) {
+    public Skill update(Skill skill) {
         return skillRepo.update(skill);
     }
 

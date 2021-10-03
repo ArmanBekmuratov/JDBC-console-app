@@ -38,6 +38,9 @@ public class SkillRepoImplementation implements GenericRepo<Skill, Integer> {
     @Override
     @SneakyThrows
     public Optional<Skill> findById(Integer id) {
+        if (id < 1) {
+            throw new RuntimeException("ID cannot be less than 1");
+        }
         List<Skill> skills = this.findAll();
         return skills.stream().filter(s -> s.getId().equals(id)).findFirst();
     }
@@ -72,12 +75,13 @@ public class SkillRepoImplementation implements GenericRepo<Skill, Integer> {
 
     @Override
     @SneakyThrows
-    public boolean update(Skill skill) {
+    public Skill update(Skill skill) {
         try (var preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, skill.getName());
             preparedStatement.setInt(2, skill.getId());
+            preparedStatement.executeUpdate();
 
-            return preparedStatement.executeUpdate() > 0;
+            return skill;
         }
 
     }
@@ -85,6 +89,9 @@ public class SkillRepoImplementation implements GenericRepo<Skill, Integer> {
     @Override
     @SneakyThrows
     public boolean deleteById(Integer id) {
+        if (id < 1) {
+            throw new RuntimeException("ID cannot be less than 1");
+        }
         try (var preparedStatement = connection.prepareStatement(DELETE_SQL)) {
             preparedStatement.setInt(1, id);
            return preparedStatement.executeUpdate() > 0;

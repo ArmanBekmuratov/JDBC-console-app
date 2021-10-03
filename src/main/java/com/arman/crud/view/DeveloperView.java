@@ -45,18 +45,16 @@ public class DeveloperView extends BaseView {
         var editMenuMessage = "Developer editing.\n" +
                 "Enter ID";
         System.out.println(editMenuMessage);
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         System.out.println(FIRST_NAME);
-        var firstname = sc.nextLine();
+        var firstname = sc.next();
         System.out.println(LAST_NAME);
-        var lastname = sc.nextLine();
+        var lastname = sc.next();
         System.out.println(SKILLS);
-        var skills = sc.nextLine();
+        var skills = sc.next();
         var idSkills = skills.split(" ");
-        var update = developerController.update(id, firstname, lastname, idSkills);
-        if (update) {
-            System.out.println(SUCCESS_EDIT);
-        }
+        var developer = developerController.update(id, firstname, lastname, idSkills);
+        System.out.println(developer.toString());
         System.out.println(LINE);
     }
 
@@ -66,7 +64,7 @@ public class DeveloperView extends BaseView {
         String deleteMenuMessage = "Developer deleting\n" +
                 "Enter ID";
         System.out.println(deleteMenuMessage);
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         if (developerController.deleteById(id)) {
             System.out.println(SUCCESS_DELETE);
         }
@@ -87,7 +85,7 @@ public class DeveloperView extends BaseView {
     void findById() {
         System.out.println(LINE);
         System.out.println("Enter Developer's ID");
-        var id = sc.nextLine();
+        var id = sc.nextInt();
         var developer = developerController.findById(id);
         System.out.println(developer.toString());
         System.out.println(LINE);

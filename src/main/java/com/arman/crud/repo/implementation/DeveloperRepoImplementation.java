@@ -52,7 +52,7 @@ public class DeveloperRepoImplementation implements GenericRepo<Developer, Integ
 
     @Override
     @SneakyThrows
-    public boolean update(Developer developer) {
+    public Developer update(Developer developer) {
         try (var developerUpdateStatement = connection.prepareStatement(UPDATE_DEVELOPER_SQL);
              var skillsDeleteStatement = connection.prepareStatement(DELETE_SKILLS_SQL);
              var skillsSaveStatement = connection.prepareStatement(SAVE_SKILLS_OF_DEVELOPER_SQL)) {
@@ -70,7 +70,7 @@ public class DeveloperRepoImplementation implements GenericRepo<Developer, Integ
                 skillsSaveStatement.executeUpdate();
             }
         }
-        return true;
+        return developer;
     }
 
     @Override
@@ -100,6 +100,9 @@ public class DeveloperRepoImplementation implements GenericRepo<Developer, Integ
     @Override
     @SneakyThrows
     public Optional<Developer> findById(Integer id) {
+        if (id < 1) {
+            throw new RuntimeException("ID cannot be less than 1");
+        }
         List<Developer> developers = this.findAll();
         return developers.stream().filter(d -> d.getId().equals(id)).findFirst();
     }
