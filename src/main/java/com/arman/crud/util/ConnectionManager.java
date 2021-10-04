@@ -14,10 +14,10 @@ import java.util.concurrent.BlockingQueue;
 @UtilityClass
 public final class ConnectionManager {
 
-    private static final String PASSWORD_KEY = "db.password";
-    private static final String USERNAME_KEY = "db.username";
-    private static final String URL_KEY = "db.url";
-    private static final String POOL_SIZE_KEY = "db.pool.size";
+    private static final String PASSWORD_KEY = "password";
+    private static final String USERNAME_KEY = "username";
+    private static final String URL_KEY = "url";
+    private static final String POOL_SIZE_KEY = "pool.size";
     private static final Integer DEFAULT_POOL_SIZE = 10;
     private static BlockingQueue<Connection> pool;
     private static List<Connection> sourceConnections;

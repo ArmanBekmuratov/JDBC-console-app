@@ -1,6 +1,7 @@
 package com.arman.crud.repo.implementation;
 import com.arman.crud.model.Skill;
 import com.arman.crud.repo.GenericRepo;
+import com.arman.crud.repo.SkillRepo;
 import com.arman.crud.util.ConnectionManager;
 import lombok.SneakyThrows;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class SkillRepoImplementation implements GenericRepo<Skill, Integer> {
+public class SkillRepoImplementation implements SkillRepo {
 
     private static final SkillRepoImplementation INSTANCE = new SkillRepoImplementation();
     private  final Connection connection = ConnectionManager.get();

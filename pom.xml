@@ -15,7 +15,12 @@
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>3.8.0</version>
                     <configuration>
-                        <propertyFile>liquibase.properties</propertyFile>
+                       <url>jdbc:postgresql://localhost:5432/company</url>
+                        <username>postgres</username>
+                        <password>2105</password>
+                        <changeLogFile>
+                            ./src/main/resources/db.migration/master.xml
+                        </changeLogFile>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -61,6 +66,20 @@
             <version>1.8.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.21.0</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
 
@@ -78,12 +97,7 @@
             <version>1.18.20</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+
 
 
     </dependencies>

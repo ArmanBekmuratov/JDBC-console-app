@@ -5,6 +5,7 @@ import com.arman.crud.model.Skill;
 import com.arman.crud.model.Team;
 import com.arman.crud.model.TeamStatus;
 import com.arman.crud.repo.GenericRepo;
+import com.arman.crud.repo.TeamRepo;
 import com.arman.crud.util.ConnectionManager;
 import lombok.SneakyThrows;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TeamRepoImplementation implements GenericRepo<Team, Integer> {
+public class TeamRepoImplementation implements TeamRepo {
     private static final TeamRepoImplementation INSTANCE = new TeamRepoImplementation();
     private final Connection connection = ConnectionManager.get();
     private static final String DELETE_BY_ID_SQL = """

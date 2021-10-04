@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS skill
+(
+    skill_id   SERIAL PRIMARY KEY,
+    skill_name VARCHAR(128) NOT NULL UNIQUE
+);

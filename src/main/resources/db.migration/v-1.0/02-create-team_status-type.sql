@@ -1,0 +1,1 @@
+CREATE TYPE team_status AS ENUM ('active', 'deleted');

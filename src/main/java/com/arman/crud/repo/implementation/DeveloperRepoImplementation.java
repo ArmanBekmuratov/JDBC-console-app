@@ -1,6 +1,7 @@
 package com.arman.crud.repo.implementation;
 import com.arman.crud.model.Developer;
 import com.arman.crud.model.Skill;
+import com.arman.crud.repo.DeveloperRepo;
 import com.arman.crud.repo.GenericRepo;
 import com.arman.crud.util.ConnectionManager;
 import lombok.SneakyThrows;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DeveloperRepoImplementation implements GenericRepo<Developer, Integer> {
+public class DeveloperRepoImplementation implements DeveloperRepo {
 
     private static final DeveloperRepoImplementation INSTANCE = new DeveloperRepoImplementation();
     private final Connection connection = ConnectionManager.get();

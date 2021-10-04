@@ -1,12 +1,13 @@
-package com.arman.crud.sercive;
+package com.arman.crud.sercive.implementation;
 
 import com.arman.crud.model.Skill;
 import com.arman.crud.repo.implementation.SkillRepoImplementation;
+import com.arman.crud.sercive.GenericService;
 
 import java.util.List;
 import java.util.Optional;
 
-public class SkillService implements GenericService<Skill>{
+public class SkillService implements GenericService<Skill> {
     private static final SkillRepoImplementation skillRepo = SkillRepoImplementation.getInstance();
     private static final SkillService INSTANCE = new SkillService();
 

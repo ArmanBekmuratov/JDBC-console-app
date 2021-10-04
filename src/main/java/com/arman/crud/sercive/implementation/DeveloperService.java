@@ -1,10 +1,9 @@
-package com.arman.crud.sercive;
+package com.arman.crud.sercive.implementation;
 
 import com.arman.crud.model.Developer;
-import com.arman.crud.model.Skill;
 import com.arman.crud.repo.implementation.DeveloperRepoImplementation;
+import com.arman.crud.sercive.GenericService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

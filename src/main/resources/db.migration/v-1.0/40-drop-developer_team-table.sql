@@ -1,0 +1,1 @@
+DROP TABLE developer_team;

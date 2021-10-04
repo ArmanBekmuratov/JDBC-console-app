@@ -1,13 +1,13 @@
-package com.arman.crud.sercive;
+package com.arman.crud.sercive.implementation;
 
 import com.arman.crud.model.Team;
 import com.arman.crud.repo.implementation.TeamRepoImplementation;
-import liquibase.pro.packaged.T;
+import com.arman.crud.sercive.GenericService;
 
 import java.util.List;
 import java.util.Optional;
 
-public class TeamService implements GenericService<Team>{
+public class TeamService implements GenericService<Team> {
     private static final TeamService INSTANCE = new TeamService();
     private static final TeamRepoImplementation teamRepo = TeamRepoImplementation.getInstance();
 
