@@ -15,12 +15,7 @@
                     <artifactId>liquibase-maven-plugin</artifactId>
                     <version>3.8.0</version>
                     <configuration>
-                       <url>jdbc:postgresql://localhost:5432/company</url>
-                        <username>postgres</username>
-                        <password>2105</password>
-                        <changeLogFile>
-                            ./src/main/resources/db.migration/master.xml
-                        </changeLogFile>
+                        <propertyFile>liquibase.properties</propertyFile>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -39,6 +34,8 @@
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
         <dependency>

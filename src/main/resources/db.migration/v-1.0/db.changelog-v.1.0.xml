@@ -6,10 +6,10 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <include file="01-changeset-skill-table.xml" relativeToChangelogFile="true"/>
+    <include file="02-changeset-team_status-type.xml" relativeToChangelogFile="true"/>
     <include file="10-changeset-team-table.xml" relativeToChangelogFile="true"/>
     <include file="20-changeset-developer-table.xml" relativeToChangelogFile="true"/>
     <include file="30-changeset-skill_developer-table.xml" relativeToChangelogFile="true"/>
     <include file="40-changeset-developer_team-table.xml" relativeToChangelogFile="true"/>
-    <include file="50-changeset-team_status-type.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
